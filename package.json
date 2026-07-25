@@ -1,1 +1,27 @@
-{}
+{
+  "name": "pmopilot-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:backend": "cd apps/backend && uvicorn src.main:app --host 127.0.0.1 --port 8000 --reload",
+    "dev:frontend-vite": "tsx server.ts",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend-vite\"",
+    "build": "cd apps/frontend && npm run build && copyfiles -u 2 \"apps/frontend/dist/**/*\" dist/",
+    "start": "node apps/frontend/dist/server.cjs"
+  },
+  "dependencies": {
+    "@google/genai": "^2.4.0",
+    "concurrently": "^9.1.2",
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2",
+    "http-proxy-middleware": "^3.0.3",
+    "vite": "^6.2.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.14.0",
+    "copyfiles": "^2.4.1",
+    "tsx": "^4.21.0",
+    "typescript": "~5.8.2"
+  }
+}

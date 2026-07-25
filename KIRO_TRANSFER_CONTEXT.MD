@@ -5,7 +5,7 @@
 **Para**: Kiro (Backend Developer Agent)
 **Fecha**: 2026-07-24
 **Estado del Frontend**: Listo para Integración (React v18 + Vite + Tailwind CSS)
-**Estado del Backend**: Desarrollo no iniciado, se debe ajustar a lógica y endpoints del frontend.
+**Estado del Backend**: Desarrollo no iniciado, se debe ajustar a lógica y endpoints del frontend (Python 3.11.6, FastAPI, Pydantic v2, Uvicorn, Amazon DynamoDB (boto3), Gemini SDK (google-genai))
 
 ---
 
