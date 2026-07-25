@@ -1,12 +1,12 @@
-# Proyecto: TeamPilot the Semantic PMO for SDD
+# Proyecto: PMOPilot the Semantic PMO for SDD
 
 _**AI Semantic Orchestrator PMO for Spec-Driven Development Teams**_  
 
 ## Elevator Pitch
 
-TeamPilot es un `AI Team Orchestrator for Spec-Driven Development`, es decir, una plataforma de orquestación asistida por IA que ayuda a pequeños equipos que desarrollan software mediante Spec-Driven Development (SDD) utilizando herramientas como Kiro, Claude Code, Cursor o Copilot.
+PMOPilot es un `AI Team Orchestrator for Spec-Driven Development`, es decir, una plataforma de orquestación asistida por IA que ayuda a pequeños equipos que desarrollan software mediante Spec-Driven Development (SDD) utilizando herramientas como Kiro, Claude Code, Cursor o Copilot.
 
-Rompe la barrera de la alfabetizacion tecnologica requerida para realizar un proyecto profesionalque exige conocimientos avanzados de Git, GitHub Actions, CI/CD o gestión de proyectos, TeamPilot actúa como una Semantic PMO inteligente, que coordina automáticamente el ciclo de vida del proyecto, preserva la memoria colectiva, automatiza procesos repetitivos y guía al equipo desde la idea inicial hasta la entrega en producción.
+Rompe la barrera de la alfabetizacion tecnologica requerida para realizar un proyecto profesionalque exige conocimientos avanzados de Git, GitHub Actions, CI/CD o gestión de proyectos, PMOPilot actúa como una Semantic PMO inteligente, que coordina automáticamente el ciclo de vida del proyecto, preserva la memoria colectiva, automatiza procesos repetitivos y guía al equipo desde la idea inicial hasta la entrega en producción.
 
 ## El problema
 
@@ -30,7 +30,7 @@ Los equipos SDD necesitan menos asistentes para escribir código y más asistent
 
 ## Propuesta de valor
 
-TeamPilot extiende y potencia todas las capacidades que ya tiene GitHub, convirtiéndola en una plataforma de desarrollo coordinada por IA.
+PMOPilot extiende y potencia todas las capacidades que ya tiene GitHub, convirtiéndola en una plataforma de desarrollo coordinada por IA.
 
 El usuario trabaja sobre objetivos semánticos en un lenguaje que entiende ("crear autenticación", "invitar un desarrollador", "publicar la versión 1.0"), mientras que el sistema orquesta automáticamente la planificación, la coordinación, las validaciones y las automatizaciones necesarias, desde scratch, hasta el GTM.
 
