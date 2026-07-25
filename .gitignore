@@ -1,0 +1,20 @@
+# Folders
+.github/
+.kiro/
+.spmo/
+.workflows/
+.scrapbook/
+
+# Files
+.env
+filestructure.txt
+.mapa_archivos.txt
+.ayuda_comandos.txt
+
+node_modules/
+__pycache__/
+.env.ejemplo
+.DS_Store
+dist/
+build/
+EOF

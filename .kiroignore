@@ -1,0 +1,8 @@
+scrapbook/
+.env
+.spmo/
+.gitignore
+.ayuda_comandos.txt
+filestructure.txt
+.mapa_archivos.txt
+*.docx
