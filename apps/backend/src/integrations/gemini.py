@@ -63,7 +63,7 @@ Genera exactamente:
 
 Formato de respuesta JSON requerido:"""
             
-            response = self.model.generate_content(
+            response = cast(Any, self.model).generate_content(
                 prompt,
                 generation_config={
                     "temperature": 0.2,
@@ -156,7 +156,7 @@ Debes responder ÚNICAMENTE con un objeto JSON válido que cumpla con este forma
 No incluyas markdown adicional (como ```json) fuera del JSON propiamente. Asegúrate de retornar un JSON perfectamente formateado."""
             
             # Crear mensaje con instrucción del sistema
-            chat = self.model.start_chat(history=formatted_history)
+            chat = cast(Any, self.model).start_chat(history=formatted_history)
             
             response = chat.send_message(
                 message,
