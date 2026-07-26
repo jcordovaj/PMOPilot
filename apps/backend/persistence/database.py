@@ -19,10 +19,36 @@ class DynamoDBClient:
                 "aws_secret_access_key": settings.aws_secret_access_key,
             }
 
-            # Si se define un endpoint local, se lo inyectamos
-            if settings.dynamodb_endpoint:
-                client_args["endpoint_url"] = settings.dynamodb_endpoint
-
+            # Detectar LocalStack automáticamente si no hay endpoint configurado
+            endpoint_url = settings.dynamodb_endpoint
+            
+            # Si no hay endpoint configurado, probar LocalStack
+            if not endpoint_url:
+                # Intentar conectar a LocalStack en puertos comunes
+                localstack_ports = [4566, 8000]
+                import socket
+                
+                for port in localstack_ports:
+                    try:
+                        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                        sock.settimeout(1)
+                        result = sock.connect_ex(('localhost', port))
+                        sock.close()
+                        
+                        if result == 0:
+                            endpoint_url = f"http://localhost:{port}"
+                            print(f"✅ LocalStack detectado automáticamente en {endpoint_url}")
+                            break
+                    except:
+                        continue
+            
+            # Si encontramos LocalStack o hay endpoint configurado, usarlo
+            if endpoint_url:
+                client_args["endpoint_url"] = endpoint_url
+                print(f"🔗 Usando DynamoDB en: {endpoint_url}")
+            else:
+                print("🌐 Usando DynamoDB en AWS Cloud (producción)")
+            
             cls._instance = boto3.client("dynamodb", **client_args)
             cls._resource = boto3.resource("dynamodb", **client_args)
             
