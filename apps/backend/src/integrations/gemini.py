@@ -1,9 +1,10 @@
 import json
 from typing import Dict, List, Any, Optional
-import google.generativeai as genai
 from ..core.config import settings
 from ..models.planning import Epic, Story, Task, PlanningResponse
 from ..models.semantic_memory import SemanticMemoryResponse, ProposedAction
+from google import genai
+from google.genai import types
 
 class GeminiIntegration:
     """Integración con Google Gemini API."""
@@ -14,14 +15,14 @@ class GeminiIntegration:
         """Inicializa el cliente de Gemini."""
         if not settings.gemini_configured:
             self.client = None
-            self.model = None
+            self.model  = None
             print("⚠️ Gemini no configurado. Usando modo mock.")
             return
         
         try:
-            genai.configure(api_key=settings.gemini_api_key)
-            self.client = genai
-            self.model = genai.GenerativeModel(settings.gemini_model)
+            client = genai.Client(api_key=settings.gemini_api_key)
+            self.client = client
+            self.model = self.client.models.generate_content(settings.gemini_model)
             print(f"✓ Gemini configurado con modelo: {settings.gemini_model}")
         except Exception as e:
             print(f"✗ Error configurando Gemini: {e}")
@@ -157,7 +158,7 @@ No incluyas markdown adicional (como ```json) fuera del JSON propiamente. Asegú
             
             # Crear mensaje con instrucción del sistema
             
-            chat = self.model.start_chat(history=formatted_history)
+            chat = cast(Any, self.model).start_chat(history=formatted_history)
             
             response = chat.send_message(
                 message,
