@@ -1,27 +1,34 @@
 {
-  "name": "pmopilot-monorepo",
-  "version": "1.0.0",
+  "name": "pmopilot",
+  "version": "0.1.0",
+  "description": "PMOPilot - AI Semantic Orchestrator PMO for Spec-Driven Development Teams",
   "private": true,
   "scripts": {
-    "dev:backend": "cd apps/backend && uvicorn src.main:app --host 127.0.0.1 --port 8000 --reload",
-    "dev:frontend-vite": "tsx server.ts",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend-vite\"",
-    "build": "cd apps/frontend && npm run build && copyfiles -u 2 \"apps/frontend/dist/**/*\" dist/",
-    "start": "node apps/frontend/dist/server.cjs"
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd apps/backend && uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload",
+    "dev:frontend": "cd apps/frontend && npm run dev",
+    "install:all": "npm install && cd apps/frontend && npm install && cd ../backend && pip install -r requirements.txt",
+    "setup:env": "cp .env.example .env",
+    "test": "echo \"No tests configured yet\"",
+    "build": "echo \"Build process not implemented\"",
+    "start": "echo \"Please use 'npm run dev' for development\""
   },
-  "dependencies": {
-    "@google/genai": "^2.4.0",
-    "concurrently": "^9.1.2",
-    "dotenv": "^17.2.3",
-    "express": "^4.21.2",
-    "http-proxy-middleware": "^3.0.3",
-    "vite": "^6.2.3"
-  },
+  "keywords": [
+    "pmopilot",
+    "ai",
+    "semantic",
+    "pmo",
+    "sdd",
+    "spec-driven-development",
+    "orchestrator"
+  ],
+  "author": "Team PMOPilot",
+  "license": "MIT",
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^22.14.0",
-    "copyfiles": "^2.4.1",
-    "tsx": "^4.21.0",
-    "typescript": "~5.8.2"
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }
