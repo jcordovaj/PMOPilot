@@ -8,7 +8,6 @@ from .config import settings
 logger = logging.getLogger(__name__)
 security = HTTPBearer()
 
-
 class RBACMiddleware:
     """Middleware para control de acceso basado en roles (RBAC)."""
     

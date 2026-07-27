@@ -22,8 +22,10 @@ class GeminiIntegration:
         try:
             client = genai.Client(api_key=settings.gemini_api_key)
             self.client = client
-            self.model = self.client.models.generate_content(settings.gemini_model)
-            print(f"✓ Gemini configurado con modelo: {settings.gemini_model}")
+            # model_name is the string identifier of the Gemini model to use
+            self.model_name = settings.gemini_model
+            self.model = client  # keep client object for API calls
+            print(f"✓ Gemini configurado con modelo: {self.model_name}")
         except Exception as e:
             print(f"✗ Error configurando Gemini: {e}")
             self.client = None
@@ -64,8 +66,10 @@ Genera exactamente:
 
 Formato de respuesta JSON requerido:"""
             
-            response = self.model.generate_content(
-                prompt,
+            # Use the client to generate content with the configured model
+            response = self.client.generate_content(
+                model=self.model_name,
+                prompt=prompt,
                 generation_config={
                     "temperature": 0.2,
                     "response_mime_type": "application/json",
@@ -158,8 +162,9 @@ No incluyas markdown adicional (como ```json) fuera del JSON propiamente. Asegú
             
             # Crear mensaje con instrucción del sistema
             
-            chat = cast(Any, self.model).start_chat(history=formatted_history)
-            
+            # Start a chat session using the client and model name
+            chat = self.client.start_chat(model=self.model_name, history=formatted_history)
+
             response = chat.send_message(
                 message,
                 generation_config={
@@ -239,7 +244,7 @@ Responde en formato JSON con los siguientes campos:
 - "suggestions": ["lista de sugerencias"]
 - "compliance_score": 0-100"""
             
-            response = self.model.generate_content(
+            response = self.model.client.models.generate_content(
                 prompt,
                 generation_config={
                     "temperature": 0.1,
